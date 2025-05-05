@@ -4,9 +4,10 @@ import { EsbuildPlugin } from 'esbuild-loader'
 import tailwindcss from '@tailwindcss/postcss'
 import autoprefixer from 'autoprefixer'
 import path from 'path'
+import { ModuleFederationPlugin } from '@module-federation/enhanced/webpack'
 
 module.exports = {
-    entry: './src/main.tsx',
+    entry: './src/main.ts',
     module: {
         rules: [
             {
@@ -37,15 +38,33 @@ module.exports = {
         ],
     },
     devServer: {
-        static: {
-            directory: path.join(__dirname, 'public'),
-        },
         hot: true,
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     plugins: [
+        new ModuleFederationPlugin({
+            name: 'host-app',
+            filename: 'entry.js',
+            // remotes: {
+            //     provider: 'remote@',
+            // },
+            exposes: {
+                // Set the modules to be exported, default export as '.'
+                //'./button': './src/components/button',
+            },
+            shared: {
+                react: {
+                    singleton: true,
+                    eager: true,
+                },
+                'react-dom': {
+                    singleton: true,
+                    eager: true,
+                },
+            },
+        }),
         new Dotenv(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.html'),

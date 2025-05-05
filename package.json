@@ -1,6 +1,6 @@
 {
-  "name": "host",
-  "description": "Webpack + ESBuild app",
+  "name": "app_name",
+  "description": "app_description",
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack serve --mode=development",

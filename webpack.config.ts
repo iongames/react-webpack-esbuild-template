@@ -10,11 +10,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 module.exports = {
     entry: './src/main.ts',
     output: {
+        clean: true,
         publicPath: 'auto',
     },
     watchOptions: { ignored: ['**/node_modules/**', '**/@mf-types/**'] },
     devServer: {
         hot: true,
+        historyApiFallback: true,
         //port: 3001,
         // headers: {
         //     'Access-Control-Allow-Origin': '*',
@@ -31,13 +33,13 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             name: 'host_app',
-            filename: 'entry.js',
+            filename: 'host_app_entry.js',
             remotes: {
                 remote_app: 'remote_app@http://localhost:3001/mf-manifest.json',
             },
             exposes: {
                 // Set the modules to be exported, default export as '.'
-                //'./button': './src/components/button',
+                // '.': './src/app',
             },
             shared: {
                 react: {
@@ -51,11 +53,10 @@ module.exports = {
             },
         }),
         new Dotenv(),
-        new MiniCssExtractPlugin({
-            filename: '[name].css',
-        }),
+        new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.html'),
+            publicPath: '/',
         }),
     ],
     module: {
@@ -79,7 +80,10 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: [tailwindcss, autoprefixer],
+                                plugins: {
+                                    '@tailwindcss/postcss': tailwindcss,
+                                    autoprefixer,
+                                },
                             },
                         },
                     },

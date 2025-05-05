@@ -6,7 +6,6 @@
 
 /node_modules
 
-/config
 /pnpm-lock.yaml
 /pnpm-workspace.yaml
 build

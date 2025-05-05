@@ -1,1 +1,6 @@
-{ "app-name": "WEBPACK + ESBUILD APP TEMPLATE" }
+{
+  "app-name": "WEBPACK + ESBUILD APP TEMPLATE",
+  "oops": "Упс!",
+  "error": { "default": "Произошла ошибка, повторите попытку позднее." },
+  "nothing-found": "Ничего не найдено"
+}

@@ -1,14 +1,9 @@
-import { useTranslation } from 'react-i18next'
-import Button from 'remote_app/button'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { routes } from './shared/router/router'
 
-export const App = () => {
-    const { t } = useTranslation()
+const router = createBrowserRouter(
+    routes
+    // { basename: 'remote' } enable for remote app
+)
 
-    return (
-        <div className="bg-primary flex h-screen w-screen flex-col items-center justify-center gap-2">
-            <Button text="BUTTON" />
-            <h1 className="text-4xl font-bold text-white">{t('app-name')}</h1>
-            <p className="text-white">{process.env.BASE_URL || 'BASE_URL not found in .env'}</p>
-        </div>
-    )
-}
+export const App = () => <RouterProvider router={router} />

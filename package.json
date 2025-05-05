@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack serve --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives"
   },
   "dependencies": {
     "@module-federation/enhanced": "^0.13.1",

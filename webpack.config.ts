@@ -10,7 +10,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 module.exports = {
     entry: './src/main.ts',
     output: {
-        clean: true,
         publicPath: 'auto',
     },
     watchOptions: { ignored: ['**/node_modules/**', '**/@mf-types/**'] },

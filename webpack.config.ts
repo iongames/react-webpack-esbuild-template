@@ -33,22 +33,20 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             name: 'host_app',
-            filename: 'host_app_entry.js',
-            remotes: {
-                remote_app: 'remote_app@http://localhost:3001/mf-manifest.json',
-            },
-            exposes: {
-                // Set the modules to be exported, default export as '.'
-                // '.': './src/app',
-            },
+            //filename: 'host_app_entry.js',
+            // remotes: {
+            //     remote_app: 'remote_app@http://localhost:3001/mf-manifest.json',
+            // },
+            // exposes: {
+            //     // Set the modules to be exported, default export as '.'
+            //     // '.': './src/app',
+            // },
             shared: {
                 react: {
                     singleton: true,
-                    eager: true,
                 },
                 'react-dom': {
                     singleton: true,
-                    eager: true,
                 },
             },
         }),

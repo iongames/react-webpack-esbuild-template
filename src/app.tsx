@@ -4,6 +4,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { init } from '@module-federation/enhanced/runtime'
 import packageJson from '../package.json'
+import './shared/styles/index.css'
+import './i18n'
 
 const reactVersion = packageJson.dependencies.react
 const reactDOMVersion = packageJson.dependencies['react-dom']
@@ -45,4 +47,6 @@ const router = createBrowserRouter(
     // { basename: 'remote' } enable for remote app
 )
 
-export const App = () => <RouterProvider router={router} />
+const App = () => <RouterProvider router={router} />
+
+export default App
